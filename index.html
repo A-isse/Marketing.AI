@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Audits - Abdiaziz</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        
+        .card-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+        
+        .btn-outline {
+            border: 2px solid #7C3AED;
+            color: #7C3AED;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background: #7C3AED;
+            color: white;
+        }
+        
+        .form-input {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #7C3AED;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .nav-blur {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-blur {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .text-gray-600 {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .text-gray-700 {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .text-gray-500 {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .text-gray-400 {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .bg-white {
+            background: #1a1a1a;
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(circle at 25px 25px, rgba(124, 58, 237, 0.1) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(124, 58, 237, 0.1) 2%, transparent 0%);
+            background-size: 100px 100px;
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: rgba(124, 58, 237, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        .form-success {
+            display: none;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full nav-blur z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold gradient-text">MarketingAudit</div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="#services" class="text-gray-400 hover:text-white transition">Services</a>
+                    <a href="#process" class="text-gray-400 hover:text-white transition">Process</a>
+                    <a href="#audit" class="btn-primary text-white px-6 py-2 rounded-full font-medium">
+                        Get Your Free Audit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20 hero-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-block px-4 py-2 rounded-full bg-purple-900/30 text-purple-400 text-sm font-medium">
+                        🚀 Free Marketing Audit
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+                        <span class="gradient-text">Transform Your Marketing</span><br>
+                        From Cost to Investment
+                    </h1>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Get a free, no-BS audit of your marketing. I'll show you exactly what's working, what's not, and how to fix it — all in 24 hours.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#audit" class="btn-primary text-white px-8 py-4 rounded-full font-medium text-center">
+                            Get Your Free Audit
+                        </a>
+                        <a href="#process" class="btn-outline px-8 py-4 rounded-full font-medium text-center">
+                            See How It Works
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="card-gradient p-6 rounded-3xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Marketing Strategy" 
+                                 class="w-full h-[500px] object-cover rounded-2xl">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-2xl"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">24h</div>
+                    <div class="text-gray-600">Turnaround Time</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">100+</div>
+                    <div class="text-gray-600">Businesses Helped</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">$1M+</div>
+                    <div class="text-gray-600">Revenue Generated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 rounded-full bg-purple-900/30 text-purple-400 text-sm font-medium mb-4">
+                    Our Services
+                </div>
+                <h2 class="text-4xl font-bold mb-4 gradient-text">What We Do</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    We help businesses transform their marketing from a cost center to a profit driver
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="feature-card p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-purple-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-paint-brush text-xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Design Audit</h3>
+                    <p class="text-gray-600">I'll show you why your posters, flyers or billboards don't convert — and how to fix them.</p>
+                </div>
+                <div class="feature-card p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-purple-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-pie text-xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Marketing Strategy Check</h3>
+                    <p class="text-gray-600">I'll review if your marketing actually makes sense — or if you're throwing money into a firepit.</p>
+                </div>
+                <div class="feature-card p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-purple-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Simple, Actionable Advice</h3>
+                    <p class="text-gray-600">No fluff. Just clear, simple steps to get better results today without spending more money.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 rounded-full bg-purple-900/30 text-purple-400 text-sm font-medium mb-4">
+                    How It Works
+                </div>
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Simple 3-Step Process</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Get your marketing audit in just 24 hours with our streamlined process
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mx-auto mb-4">
+                        <div class="text-2xl font-bold text-purple-400">1</div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Fill Out Form</h3>
+                    <p class="text-gray-600">Tell us about your business and marketing challenges</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mx-auto mb-4">
+                        <div class="text-2xl font-bold text-purple-400">2</div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Analysis</h3>
+                    <p class="text-gray-600">We analyze your marketing and create a detailed report</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mx-auto mb-4">
+                        <div class="text-2xl font-bold text-purple-400">3</div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Get Results</h3>
+                    <p class="text-gray-600">Receive your audit with actionable insights in 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audit Form Section -->
+    <section id="audit" class="py-16 hero-gradient">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="card-gradient p-8 rounded-3xl">
+                <div class="text-center mb-8">
+                    <div class="inline-block px-4 py-2 rounded-full bg-purple-900/30 text-purple-400 text-sm font-medium mb-4">
+                        Get Started
+                    </div>
+                    <h2 class="text-4xl font-bold mb-4 gradient-text">Get Your Free Marketing Audit</h2>
+                    <p class="text-xl text-gray-600">Fill out this quick form and we will then schedule a meeting with you to analyze your marketing in 24 hours</p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">Your Name</label>
+                            <input type="text" class="form-input w-full px-4 py-3 rounded-xl" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">Business Name</label>
+                            <input type="text" class="form-input w-full px-4 py-3 rounded-xl" placeholder="Your Company">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">What's your biggest marketing challenge?</label>
+                        <textarea class="form-input w-full px-4 py-3 rounded-xl" rows="4" placeholder="Tell me about your marketing struggles..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full text-white font-semibold py-4 rounded-xl">
+                        Get Your Free Audit
+                    </button>
+
+                    <p class="text-center text-sm text-gray-500">
+                        By submitting, you agree to receive marketing tips and updates. Unsubscribe anytime.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 rounded-full bg-purple-900/30 text-purple-400 text-sm font-medium mb-4">
+                    About Me
+                </div>
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Your Marketing Partner</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Helping businesses transform their marketing from cost to investment
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="card-gradient p-8 rounded-3xl">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-20 h-20 rounded-full bg-purple-900/30 flex items-center justify-center mb-6">
+                                <i class="fas fa-user text-3xl text-purple-400"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold gradient-text mb-2">Abdiaziz</h3>
+                            <p class="text-purple-400 font-medium mb-4">Marketing Expert</p>
+                            <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                                I'm passionate about fixing bad marketing and helping businesses truly stand out. 
+                                I believe smart design and authentic marketing can change everything.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center text-purple-400 hover:bg-purple-900/50 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center text-purple-400 hover:bg-purple-900/50 transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center text-purple-400 hover:bg-purple-900/50 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient p-8 rounded-3xl">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mb-6">
+                            <i class="fas fa-envelope text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold gradient-text mb-2">Stay Updated</h3>
+                        <p class="text-gray-600 text-lg mb-6 max-w-md">
+                            Get weekly marketing tips, case studies, and insights straight to your inbox.
+                        </p>
+                        <form class="w-full max-w-md space-y-4" id="newsletterForm">
+                            <div class="relative">
+                                <input type="email" 
+                                       placeholder="Enter your email" 
+                                       class="form-input w-full px-4 py-3 pl-12 rounded-xl">
+                                <div class="absolute left-3 top-0 bottom-0 flex items-center">
+                                    <i class="fas fa-envelope text-sm text-purple-400"></i>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary w-full text-white font-semibold py-3 rounded-xl">
+                                Subscribe to Newsletter
+                            </button>
+                            <div class="form-success">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Thank you for subscribing! We'll keep you updated.
+                            </div>
+                        </form>
+                        <p class="text-sm text-gray-500 mt-4">
+                            No spam. Unsubscribe anytime.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-blur py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center">
+                <div class="flex space-x-6 mb-6">
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    Made with ❤️ by Abdiaziz | marketing audits that don't suck.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up text-purple-400"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        const submitButton = newsletterForm.querySelector('button[type="submit"]');
+        const successMessage = newsletterForm.querySelector('.form-success');
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitButton.classList.add('btn-loading');
+            submitButton.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                submitButton.classList.remove('btn-loading');
+                submitButton.disabled = false;
+                successMessage.style.display = 'block';
+                newsletterForm.reset();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
